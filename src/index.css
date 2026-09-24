@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --navonmesh-ice: #edfafd;
-  --navonmesh-sky: #dff6fb;
-  --navonmesh-cyan: #69dff0;
-  --navonmesh-cyan-strong: #2bc7e3;
-  --navonmesh-teal: #0ea6c7;
-  --navonmesh-blue: #0a5b95;
-  --navonmesh-navy: #062d52;
-  --navonmesh-midnight: #041c33;
-  --navonmesh-text: #0d2f4d;
+  --navonmesh-ice: #D2F6FA;
+  --navonmesh-sky: #96C7E8;
+  --navonmesh-cyan: #55D1D9;
+  --navonmesh-cyan-strong: #55D1D9;
+  --navonmesh-teal: #2BA9B9;
+  --navonmesh-blue: #1D6195;
+  --navonmesh-navy: #1D6195;
+  --navonmesh-midnight: #12466f;
+  --navonmesh-text: #153f61;
 }
 
 @layer base {
@@ -40,4 +40,16 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #b8aba0;
+}
+
+/* Replace legacy gold CTA buttons with the supplied cyan/teal palette. */
+button[class*="bg-amber-500"] {
+  background-color: var(--navonmesh-cyan) !important;
+  color: var(--navonmesh-blue) !important;
+  border-color: var(--navonmesh-cyan) !important;
+}
+
+button[class*="bg-amber-500"]:hover {
+  background-color: var(--navonmesh-teal) !important;
+  color: #ffffff !important;
 }
