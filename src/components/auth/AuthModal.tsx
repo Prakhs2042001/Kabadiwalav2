@@ -180,9 +180,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-white rounded-3xl max-w-lg w-full border border-[#E0D5C3] shadow-2xl overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200">
+      <div className="satoshi-auth-modal bg-white rounded-3xl max-w-lg w-full border border-[#E0D5C3] shadow-2xl overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200">
         {/* Modal Header */}
-        <div className="bg-[#240A39] text-white p-6 relative">
+        <div className="auth-modal-header bg-[#240A39] text-white p-6 relative">
           <button
             onClick={onClose}
             className="absolute top-5 right-5 p-2 rounded-xl text-purple-200 hover:text-white hover:bg-white/10 transition-colors"
@@ -190,13 +190,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           >
             <X className="w-5 h-5" />
           </button>
-
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-300 bg-white/10 px-2.5 py-0.5 rounded-full flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>PostgreSQL Production Auth</span>
-            </span>
-          </div>
 
           <h2 className="font-display font-black text-2xl text-white tracking-tight">
             {mode === 'login' && 'Log In to Your Account'}
@@ -210,10 +203,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             {mode === 'forgot' && 'Enter your registered email address or phone number to receive a secure token.'}
             {mode === 'reset' && 'Create a fresh secure password to restore access.'}
           </p>
+          <div className="auth-modal-accent" aria-hidden="true" />
         </div>
 
         {/* Modal Form Content */}
-        <div className="p-6 space-y-5 bg-[#FAF8F5]">
+        <div className="auth-modal-content p-6 space-y-5 bg-[#FAF8F5]">
           {errorMessage && (
             <div className="p-3.5 rounded-2xl bg-red-50 text-red-700 text-xs flex items-start gap-2.5 border border-red-200">
               <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
@@ -227,46 +221,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               <span className="font-medium">{successMessage}</span>
             </div>
           )}
-
-          {/* Quick Seed Credentials helper banner */}
-          <div className="bg-amber-50/80 border border-amber-200/80 rounded-2xl p-3 text-xs text-amber-900 space-y-1">
-            <div className="font-bold flex items-center justify-between">
-              <span>Verified Seed Accounts:</span>
-              <span className="text-[10px] font-mono text-amber-700 font-normal">Password: Password@123</span>
-            </div>
-            <div className="flex flex-wrap gap-1.5 text-[11px] pt-1">
-              <button
-                type="button"
-                onClick={() => {
-                  setIdentifier('rahul.sharma@example.com');
-                  setPassword('Password@123');
-                }}
-                className="px-2 py-0.5 rounded-md bg-white border border-amber-300 hover:bg-amber-100 font-mono"
-              >
-                🏠 Household
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setIdentifier('maatara.scrap@gmail.com');
-                  setPassword('Password@123');
-                }}
-                className="px-2 py-0.5 rounded-md bg-white border border-amber-300 hover:bg-amber-100 font-mono"
-              >
-                🚚 Kabadiwala
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setIdentifier('admin@kabadiwalaconnect.org');
-                  setPassword('Password@123');
-                }}
-                className="px-2 py-0.5 rounded-md bg-white border border-amber-300 hover:bg-amber-100 font-mono"
-              >
-                🛡️ Admin
-              </button>
-            </div>
-          </div>
 
           {/* ----------------- LOGIN FORM ----------------- */}
           {mode === 'login' && (

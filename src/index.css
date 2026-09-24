@@ -52,6 +52,71 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.satoshi-auth-modal {
+  font-family: 'Satoshi', 'Plus Jakarta Sans', sans-serif;
+  border-color: var(--navonmesh-sky) !important;
+}
+
+.satoshi-auth-modal .auth-modal-header {
+  background: linear-gradient(135deg, var(--navonmesh-blue), var(--navonmesh-teal)) !important;
+}
+
+.satoshi-auth-modal .auth-modal-header p {
+  color: var(--navonmesh-ice) !important;
+}
+
+.satoshi-auth-modal .auth-modal-accent {
+  width: 92px;
+  height: 4px;
+  margin-top: 18px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--navonmesh-cyan), var(--navonmesh-sky));
+  box-shadow: 0 0 18px rgb(85 209 217 / 45%);
+}
+
+.satoshi-auth-modal {
+  box-shadow: 0 24px 70px rgb(29 97 149 / 25%), 0 8px 24px rgb(15 63 97 / 12%);
+}
+
+.satoshi-auth-modal .auth-modal-content {
+  background: var(--navonmesh-ice) !important;
+}
+
+.satoshi-auth-modal input,
+.satoshi-auth-modal select {
+  border-color: var(--navonmesh-sky) !important;
+  font-family: inherit;
+}
+
+.satoshi-auth-modal input:focus,
+.satoshi-auth-modal select:focus {
+  border-color: var(--navonmesh-teal) !important;
+  box-shadow: 0 0 0 3px rgb(85 209 217 / 25%) !important;
+}
+
+.satoshi-auth-modal button[type="submit"] {
+  background: var(--navonmesh-cyan) !important;
+  color: var(--navonmesh-blue) !important;
+  border: 1px solid var(--navonmesh-cyan) !important;
+}
+
+.satoshi-auth-modal button[type="submit"]:hover:not(:disabled) {
+  background: var(--navonmesh-teal) !important;
+  color: #ffffff !important;
+}
+
+.satoshi-auth-modal .auth-modal-content [class*="bg-amber-50"],
+.satoshi-auth-modal .auth-modal-content [class*="bg-amber-50"] {
+  background: rgb(150 199 232 / 35%) !important;
+  border-color: var(--navonmesh-sky) !important;
+  color: var(--navonmesh-blue) !important;
+}
+
+.satoshi-auth-modal .auth-modal-content [class*="border-[#E0D5C3]"],
+.satoshi-auth-modal .auth-modal-content [class*="border-amber-"] {
+  border-color: var(--navonmesh-sky) !important;
+}
+
 /* Replace legacy gold CTA buttons with the supplied cyan/teal palette. */
 button[class*="bg-amber-500"] {
   background-color: var(--navonmesh-cyan) !important;
