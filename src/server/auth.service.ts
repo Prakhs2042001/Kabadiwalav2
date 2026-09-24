@@ -2,7 +2,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { db } from '../db/index.ts';
-import { users, households, kabadiwalas, passwordResetTokens } from '../db/schema.ts';
+import { users, households, kabadiwalas, partnerWarehouses, passwordResetTokens } from '../db/schema.ts';
 import { eq, or, and, gt, isNull } from 'drizzle-orm';
 import crypto from 'crypto';
 
@@ -91,6 +91,21 @@ export class AuthService {
       }
     }
 
+    let warehouseId: number | undefined;
+    if (data.role === 'KABADIWALA') {
+      const availableWarehouses = await db
+        .select({ id: partnerWarehouses.id })
+        .from(partnerWarehouses)
+        .where(eq(partnerWarehouses.status, 'ACTIVE'))
+        .limit(1);
+
+      if (!availableWarehouses[0]) {
+        throw new Error('Kabadiwala registration is temporarily unavailable because no partner warehouse has been configured.');
+      }
+
+      warehouseId = availableWarehouses[0].id;
+    }
+
     const passwordHash = await this.hashPassword(data.password);
     const uid = `kc_usr_${crypto.randomBytes(8).toString('hex')}`;
 
@@ -123,10 +138,9 @@ export class AuthService {
         pinCode: data.pinCode || '713325',
       });
     } else if (data.role === 'KABADIWALA') {
-      // Linked to default warehouse 1 pending partner assignment
       await db.insert(kabadiwalas).values({
         userId: createdUser.id,
-        warehouseId: 1,
+        warehouseId: warehouseId!,
         businessName: data.businessName || `${data.name}'s Scrap Depot`,
         ownerName: data.name,
         phone: cleanPhone,

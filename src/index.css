@@ -42,6 +42,16 @@
   background: #b8aba0;
 }
 
+button:not(:disabled),
+a[href],
+[role="button"] {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
 /* Replace legacy gold CTA buttons with the supplied cyan/teal palette. */
 button[class*="bg-amber-500"] {
   background-color: var(--navonmesh-cyan) !important;
