@@ -10,8 +10,8 @@ services:
     env: node
     plan: free
     rootDir: .
-    buildCommand: npm ci && npm run db:push && npm run build
-    startCommand: npm run start
+    buildCommand: npm ci && npm run build
+    startCommand: npm run db:push && npm run start
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV
