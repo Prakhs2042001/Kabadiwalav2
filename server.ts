@@ -36,6 +36,10 @@ const app = express();
 app.use(express.json({ limit: '10mb' }));
 app.use(cookieParser());
 
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok' });
+});
+
 // In-memory rate limiter for auth routes
 const authAttempts = new Map<string, { count: number; resetAt: number }>();
 function authRateLimiter(req: any, res: any, next: any) {
@@ -173,6 +177,13 @@ app.post('/api/auth/register', authRateLimiter, async (req, res) => {
     });
   } catch (error: any) {
     console.error('Registration error:', error);
+    const databaseError = error?.cause || error;
+    if (['ECONNREFUSED', 'ENOTFOUND', 'ETIMEDOUT'].includes(databaseError?.code)) {
+      return res.status(503).json({
+        success: false,
+        error: 'The account database is unavailable. Start PostgreSQL locally or configure DATABASE_URL/SQL_HOST, then try again.',
+      });
+    }
     res.status(400).json({ success: false, error: error.message || 'Registration failed' });
   }
 });
