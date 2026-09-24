@@ -1,0 +1,37 @@
+databases:
+  - name: navonmesh-db
+    databaseName: navonmesh
+    user: navonmesh
+    plan: free
+
+services:
+  - type: web
+    name: navonmesh
+    env: node
+    plan: free
+    rootDir: .
+    buildCommand: npm install && npm run build
+    startCommand: NODE_ENV=production npx tsx server.ts
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SQL_HOST
+        fromDatabase:
+          name: navonmesh-db
+          property: host
+      - key: SQL_USER
+        fromDatabase:
+          name: navonmesh-db
+          property: user
+      - key: SQL_PASSWORD
+        fromDatabase:
+          name: navonmesh-db
+          property: password
+      - key: SQL_DB_NAME
+        fromDatabase:
+          name: navonmesh-db
+          property: database

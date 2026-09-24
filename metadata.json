@@ -1,0 +1,6 @@
+{
+  "name": "Kabadiwala Connect",
+  "description": "Lightweight digital trust layer connecting households, informal scrap collectors, and recyclers for Smart India Hackathon 2026.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
